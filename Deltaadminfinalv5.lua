@@ -6,7 +6,7 @@
   ██████╔╝███████╗███████╗██║   ██║  ██║
   ╚═════╝ ╚══════╝╚══════╝╚═╝   ╚═╝  ╚═╝
   DELTA ADMIN V5 - EDISI RUSUH TOTAL
-  oleh maliki092007
+  oleh maliki092007 | Update MAP DESTROYER
 ]]
 
 -- LAYANAN
@@ -17,6 +17,7 @@ local TweenService = game:GetService("TweenService")
 local Workspace = game:GetService("Workspace")
 local StarterGui = game:GetService("StarterGui")
 local Lighting = game:GetService("Lighting")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local LP = Players.LocalPlayer
 local Mouse = LP:GetMouse()
@@ -31,7 +32,7 @@ local States = {
     infJumpEnabled = false,
     checkpoint = nil,
     chatSpamEnabled = false,
-    chatSpamText = "DIHACK OLEH DELTA ADMIN 💀",
+    chatSpamText = "💀 DIHACK OLEH DELTA ADMIN 💀",
     flingTarget = nil,
     orbitTarget = nil,
     orbitEnabled = false,
@@ -185,6 +186,7 @@ ContentLayout.Parent = ContentArea
 ContentLayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
     ContentArea.CanvasSize = UDim2.new(0, 0, 0, ContentLayout.AbsoluteContentSize.Y + 10)
 end)
+
 -- ========== FUNGSI PEMBUAT UI ==========
 
 local Tabs = {}
@@ -449,7 +451,9 @@ end)
 CloseBtn.MouseButton1Click:Connect(function()
     States.panelOpen = false
     MainFrame.Visible = false
-end)-- ==========================================
+end)
+
+-- ==========================================
 -- TAB 1: 📍 CP (Titik Simpan)
 -- ==========================================
 buatTombol(cpTab, "💾 Simpan Titik", function()
@@ -830,6 +834,7 @@ buatTombol(hancurTab, "☠️ PENGHANCURAN TOTAL", function()
         pcall(function() part:Destroy() end)
     end
 end)
+
 -- ==========================================
 -- TAB 6: 🎭 Karakter
 -- ==========================================
@@ -981,10 +986,16 @@ task.spawn(function()
     while true do
         if States.chatSpamEnabled then
             pcall(function()
-                game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(States.chatSpamText, "All")
+                local event = ReplicatedStorage:FindFirstChild("DefaultChatSystemChatEvents")
+                if event then
+                    local sayMsg = event:FindFirstChild("SayMessageRequest")
+                    if sayMsg then
+                        sayMsg:FireServer(States.chatSpamText, "All")
+                    end
+                end
             end)
         end
-        task.wait(1)
+        task.wait(0.8)
     end
 end)
 
@@ -992,23 +1003,29 @@ end)
 -- SELAMAT DATANG
 -- ==========================================
 StarterGui:SetCore("SendNotification", {
-    Title = "⚡ Delta Admin V5",
-    Text = "Berhasil dimuat! Ketuk ⚡ untuk b
--- ==========================================
--- SELAMAT DATANG
--- ==========================================
-StarterGui:SetCore("SendNotification", {
-    Title = "⚡ Delta Admin V5",
-    Text = "Berhasil dimuat! Ketuk ⚡ untuk buka panel\n7 Tab | 40+ Fitur | oleh maliki092007",
+    Title = "⚡ Delta Admin V5 - MAP DESTROYER",
+    Text = "✅ Berhasil dimuat! Ketuk ⚡ untuk buka panel\n🌍 7 Tab | 45+ Fitur | RUSUH TOTAL! 💀",
     Duration = 5
 })
 
-print("⚡ Delta Admin V5 Berhasil Dimuat!")
+print("⚡ DELTA ADMIN V5 - MAP DESTROYER ⚡")
+print("✅ Berhasil Dimuat!")
+print("="..string.rep("=", 50).."=")
 print("📍 Tab CP: Simpan & Kembali ke Titik")
 print("👥 Tab Pemain: Teleport & Tarik Pemain")
-print("🏃 Tab Gerak: Kecepatan, Lompat, Tembus Dinding")
-print("🤡 Tab Rusuh: Lempar, Tarik, Gelombang Kejut, Kacau Balau")
-print("🌍 Tab Hancur: Ledak, Hapus Lantai, Penghancuran Total")
+print("🏃 Tab Gerak: Kecepatan, Lompat, Tembus Dinding, Inf Jump")
+print("🤡 Tab Rusuh: Lempar, Tarik, Gelombang Kejut, KACAU BALAU")
+print("🌍 Tab Hancur: FITUR RUSUH MAP (SEMUA LIHAT!)")
+print("  🕳️ Hapus Lantai")
+print("  💥 Ledakkan Map")
+print("  🏚️ Hancurkan Total")
+print("  🌀 Acak Posisi")
+print("  🔄 Putar Objek")
+print("  ⬆️ Terbang ke Atas")
+print("  🧲 Magnet Objek")
+print("  📐 Ubah Ukuran")
+print("  ☠️ PENGHANCURAN TOTAL (ALL IN)")
 print("🎭 Tab Karakter: Salin Tampilan, Respawn")
 print("🛠️ Tab Alat: Anti AFK, Pindah Server, Info Server")
-
+print("="..string.rep("=", 50).."=")
+print("💀 SIAP NGANCUR TOTAL GANG! 💀")
